@@ -1,9 +1,16 @@
 import PropTypes from "prop-types";
+import { FaBookmark } from "react-icons/fa";
 
-const Blog = ({ blog, handleAddToBookmarks }) => {
-
-    const { cover, author, author_img, title, posted_date, reading_time, hashtags } = blog;
-    
+const Blog = ({ blog, handleAddToBookmarks,handleMarkBtn }) => {
+  const {
+    cover,
+    author,
+    author_img,
+    title,
+    posted_date,
+    reading_time,
+    hashtags,
+  } = blog;
 
   return (
     <div className="border rounded-xl mt-8">
@@ -17,20 +24,29 @@ const Blog = ({ blog, handleAddToBookmarks }) => {
           </div>
         </div>
         <div>
-          <button onClick={()=>handleAddToBookmarks(blog)}  className="flex border p-3 rounded-lg bg-slate-100">
+          <button
+            onClick={() => handleAddToBookmarks(blog)}
+            className="flex items-center border p-3 rounded-lg bg-slate-100 gap-3"
+          >
             {reading_time} min read
+            <FaBookmark className=" border"></FaBookmark>
           </button>
         </div>
-          </div>
-          <h1 className="text-3xl font-bold mt-3">{title}</h1>
-          <p className="font-bold mt-4">#{hashtags[0]} #{hashtags[1]}</p>
-       <button className="text-[#6047EC] font-bold border mt-5 p-4 underline">Mark as read</button>  
+      </div>
+      <h1 className="text-3xl font-bold mt-3">{title}</h1>
+      <p className="font-bold mt-4">
+        #{hashtags[0]} #{hashtags[1]}
+      </p>
+      <button onClick={()=>handleMarkBtn(reading_time)} className="text-[#6047EC] font-bold border mt-5 p-4 underline">
+        Mark as read
+      </button>
     </div>
   );
 };
 
 Blog.propTypes = {
-    blog: PropTypes.object.isRequired,
-    handleAddToBookmarks: PropTypes.func.isRequired,
+  blog: PropTypes.object.isRequired,
+  handleAddToBookmarks: PropTypes.func.isRequired,
+  handleMarkBtn: PropTypes.func.isRequired,
 };
 export default Blog;

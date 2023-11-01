@@ -8,7 +8,7 @@ const Blogs = ({handleAddToBookmarks,handleMarkBtn}) => {
     const [allBlogs, setAllBlogs] = useState([]);
 
     useState(() => {
-        fetch("/public/blog.json")
+        fetch("blog.json")
             .then(res => res.json())
             .then(data => setAllBlogs(data))
     },[])
